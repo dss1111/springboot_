@@ -35,6 +35,14 @@ CrossOrigin 어노테이션은 외부에서 자원을 사용할 수 있게 해�
 ```
 @PathVariable를 통해 url값을 받는다. 참고로 "/user/{no}" @PathVariable int no 둘다 이름이 no로 같은데 이름 다르면 안된다!
 
+```java
+	@DeleteMapping("/{user}/{no}")
+	public ResponseEntity<byte[]> removeTodo(@PathVariable String user,@PathVariable int no) { //PathVariable 여러개도 사용할수 있음
+		//..............생략................
+	}
+```
+
+
 ## RequestParam vs PathVariable
 ``Type 1 => http://127.0.0.1?user=1&no=2``RequestParam으로 user랑 no를 받는다  
 ``Type 2 => http://127.0.0.1/user/1 ``PathVariable로 받는다     
