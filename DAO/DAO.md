@@ -85,3 +85,13 @@ public class User {
 	</update>
 ```
 클래스를 받는다면? 이름 맞춰서 #{}에 넣어주면 그대로 사용할 수 있다.
+
+## concat으로 검색 구현하기
+```xml
+	<select id="selectByName" parameterType="string" resultType="SomeInfo">
+		select * 
+		from Someinfo 
+		where name like concat('%',#{value},'%')
+	</select>
+```
+concat ('%',#{value},'%')로 %검색어% 를 구현할 수 있다.
