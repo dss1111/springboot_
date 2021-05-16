@@ -56,3 +56,32 @@ public interface UserDAO {
 	</select>
 ```
 resultType은 동일하다. 반환되는 갯수와 상관없이 반환형태만 지정해주면 알아서 처리한다.
+
+## 파라미터참조 하는법
+
+```xml
+	<select id="select" parameterType="string" resultType="User">
+		select * 
+		from happy_member 
+		where userid = #{value}
+	</select>
+```
+파라미터에 넘어오는 값이 1개인 경우에 #{}에 어떤 이름이든 써넣으면 알아서 붙는다. 편의상 #{value}라고 쓰는편..
+```java
+public class User {
+	private String userId;
+	private String userName;
+	private String userPwd;
+	private String emailId;
+	private String emailDomain;
+	private String joinDate;
+}
+```
+```xml
+	<update id="update" parameterType="User">
+		update happy_member
+		set username = #{userName} , emailid = #{emailId}, emaildomain = #{emailDomain}
+		where userid = #{userId} and userpwd = #{userPwd}
+	</update>
+```
+클래스를 받는다면? 이름 맞춰서 #{}에 넣어주면 그대로 사용할 수 있다.
